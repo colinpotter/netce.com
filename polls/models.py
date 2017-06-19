@@ -18,6 +18,22 @@ class Question(models.Model):
   was_published_recently.boolean = True
   was_published_recently.short_description = 'Published recently?'
 
+  def is_expired(self):
+    now = timezone.now()
+    return self.pub_date <= now - datetime.timedelta(days=365)
+
+  is_expired.admin_order_field = 'pub_date'
+  is_expired.boolean = True
+  is_expired.short_description = 'Expired?'
+
+  def is_future(self):
+    now = timezone.now()
+    return self.pub_date > now
+
+  is_future.admin_order_field = 'pub_date'
+  is_future.boolean = True
+  is_future.short_description = 'Future?'
+
 
 class Choice(models.Model):
   question = models.ForeignKey(Question, on_delete=models.CASCADE)
