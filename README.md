@@ -2,7 +2,7 @@
 ## Instructions:
 ```
 $ git clone https://github.com/colinpotter/netce.com.git
-$ cd netce.com/mysite
+$ cd netce.com
 $ python3 manage.py migrate
 $ python3 manage.py test
 ```
