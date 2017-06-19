@@ -25,9 +25,14 @@ break some of the tests that assume an empty database*
     - they will not show up in the index view
     - they are marked as expired in the admin panel
 - added a future column in the questions admin panel
+- added a link to the admin page and the polls page in the main index
 
 ## Tests added:
 - expired questions don't show up in the index
+- a radio button is shown when there is a choice in a detail view
 - the proper message is shown when there are no choices for a question
 - the proper message is shown when a choice has negative votes
     - TEST FAILS: because I modified the message to not match what is expected
+- a test that has a NameError from an undefined name
+    - TEST ERRORS: I used an udefined variable on purpose
+- tests that a for post returns a valid 200 code
