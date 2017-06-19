@@ -1,6 +1,8 @@
 # netce.com
 ## Instructions:
 ```
+$ git clone https://github.com/colinpotter/netce.com.git
+$ cd netce.com/mysite
 $ python3 manage.py migrate
 $ python3 manage.py createsuperuser
 $ python3 manage.py runserver
