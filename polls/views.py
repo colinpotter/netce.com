@@ -1,3 +1,5 @@
+import datetime
+
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -14,7 +16,8 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.filter(
-            pub_date__lte=timezone.now()
+            pub_date__lte=timezone.now(),
+			pub_date__gte=timezone.now() - datetime.timedelta(days=365),
         ).order_by('-pub_date')[:5]
 
 
@@ -24,8 +27,10 @@ class DetailView(generic.DetailView):
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
+        Excludes any questions that are more than a year old.
         """
-        return Question.objects.filter(pub_date__lte=timezone.now())
+        now = timezone.now()
+        return Question.objects.filter(pub_date__lte=now, pub_date__gt=now - datetime.timedelta(days=365))
 
 
 class ResultsView(generic.DetailView):
