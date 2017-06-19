@@ -34,6 +34,6 @@ break some of the tests that assume an empty database*
 
 ## Tests added:
 - expired questions don't show up in the index
-- proper message is shown when there are no choices for a question
-- message when a choice has negative votes
+- the proper message is shown when there are no choices for a question
+- the proper message is shown when a choice has negative votes
     - TEST FAILS: because I modified the message to not match what is expected
