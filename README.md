@@ -15,4 +15,4 @@ python3 manage.py runserver
 ## Tests added:
 - expired questions don't show up in the index
 - proper message is shown when there are no choices for a question
-- tests for an error when a choice has negative votes
+- message when a choice has negative votes
