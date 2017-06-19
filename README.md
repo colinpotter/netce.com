@@ -4,10 +4,14 @@
 python3 manage.py migrate
 python3 manage.py createsuperuser
 python3 manage.py runserver
-mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
 python3 manage.py test
 ```
-*We have to disable the 0002_load_historical_data.py file that is used to populate the database. Otherwise, it is imported at the beginning of the test procedures and breaks a few tests.*
+*If you would like to import a few questions and choices into the database,
+you can do the following:*
+```
+mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
+python3 manage.py migrate
+```
 
 ## Features added:
 - mark poll questions as expired when they are a year old or older
