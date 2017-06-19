@@ -12,7 +12,7 @@ def load_data(apps, schema_editor):
 	q.save()
 	q.choice_set.create(choice_text='Python', votes=1)
 	q.choice_set.create(choice_text='Django', votes=1)
-	q.choice_set.create(choice_text='Negative votes', votes=-2)
+	q.choice_set.create(choice_text='Negative votes', votes=-999)
 	q = Question(question_text="Do I have a choice?", pub_date=timezone.now())
 	q.save()
 	q = Question(question_text="Is this question as old as can be?", pub_date="1000-01-01T00:00:00Z")
