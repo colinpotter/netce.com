@@ -4,16 +4,21 @@
 $ git clone https://github.com/colinpotter/netce.com.git
 $ cd netce.com/mysite
 $ python3 manage.py migrate
-$ python3 manage.py createsuperuser
-$ python3 manage.py runserver
 $ python3 manage.py test
 ```
-*If you would like to import a few questions and choices into the database,
-you can do the following:*
+*If you would like to set up the server to check the admin pages and import a
+few sample questions and choices you can do the following:*
 ```
-$ mv polls/migrations/disabled 0002_load_historical_data.py polls/migrations/
+$ python3 manage.py createsuperuser
+$ python3 manage.py runserver
+$ mv polls/migrations/disabled/0002_load_historical_data.py polls/migrations/
 $ python3 manage.py migrate
+$ mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
 ```
+*We move the load_historical_data file back and forth, so that it won't put the
+sample questions in the database when running the test functions. which would
+break some of the tests that assume an empty database*
+
 
 ## Features added:
 - mark poll questions as expired when they are a year old or older
