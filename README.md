@@ -1,16 +1,16 @@
 # netce.com
 ## Instructions:
 ```
-python3 manage.py migrate
-python3 manage.py createsuperuser
-python3 manage.py runserver
-python3 manage.py test
+$ python3 manage.py migrate
+$ python3 manage.py createsuperuser
+$ python3 manage.py runserver
+$ python3 manage.py test
 ```
 *If you would like to import a few questions and choices into the database,
 you can do the following:*
 ```
-mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
-python3 manage.py migrate
+$ mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
+$ python3 manage.py migrate
 ```
 
 ## Features added:
