@@ -38,6 +38,17 @@ class QuestionIndexViewTests(TestCase):
             ['<Question: Past question.>']
         )
 
+    def test_expired_question(self):
+        """
+        Questions with a pub_date older than 365 days ago aren't displayed on
+        the index page.
+        """
+        create_question(question_text="Super old question.", days=-100000)
+        response = self.client.get(reverse('polls:index'))
+        print('('+response+')')
+        self.assertContains(response, "No polls are available.")
+        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+
     def test_future_question(self):
         """
         Questions with a pub_date in the future aren't displayed on
@@ -95,6 +106,16 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
 
+    def test_expired_question(self):
+        """
+        The detail view of a question with a pub_date more than a year old
+        returns a 404 not found.
+        """
+        expired_question = create_question(question_text='Expired question.', days=-375)
+        url = reverse('polls:detail', args=(expired_question.id,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
+
     def test_no_choice_question(self):
         """
         The detail view of a question with no choices will give a relevant message.
@@ -103,4 +124,3 @@ class QuestionDetailViewTests(TestCase):
         url = reverse('polls:detail', args=(no_choice_question.id,))
         response = self.client.get(url)
         self.assertContains(response, 'No choices provided!')
-
