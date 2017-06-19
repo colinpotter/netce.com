@@ -1,24 +1,18 @@
 # netce.com
-================================================================================
 ## Instructions:
+```
 python3 manage.py migrate
-
 python3 manage.py createsuperuser
-
 python3 manage.py runserver
-
-
+```
 
 ## Features added:
--mark poll questions as expired when they are a year old or older
-
---they will not show up in the index view
-
---they are marked as expired in the admin panel
-
--added a future column in the questions admin panel
+- mark poll questions as expired when they are a year old or older
+    - they will not show up in the index view
+    - they are marked as expired in the admin panel
+- added a future column in the questions admin panel
 
 ## Tests added:
--expired questions don't show up in the index
-
--proper message is shown when there are no choices for a question
+- expired questions don't show up in the index
+- proper message is shown when there are no choices for a question
+- tests for an error when a choice has negative votes
