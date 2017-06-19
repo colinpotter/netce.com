@@ -44,3 +44,12 @@ class QuestionModelTests(TestCase):
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
         self.assertIs(recent_question.was_published_recently(), True)
+
+    def test_was_published_recently_with_expired_question(self):
+        """
+        was_published_recently() returns False for questions whose pub_date
+        is older than 365 days.
+        """
+        time = timezone.now() - datetime.timedelta(days=1000)
+        expired_question = Question(pub_date=time)
+        self.assertIs(expired_question.was_published_recently(), False)

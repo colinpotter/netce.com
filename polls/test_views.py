@@ -124,7 +124,25 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
         self.assertContains(response, 'No choices provided!')
 
+    def test_for_buttons(self):
+        """
+        The detail view of a question with one choice will contain a radio
+        button
+        """
+        q = create_question(question_text='Question.', days=0)
+        q.choice_set.create(choice_text='One choice', votes=0)
+        url = reverse('polls:detail', args=(q.id,))
+        response = self.client.get(url)
+        self.assertContains(response, 'input type="radio"')
+
 class ResultsViewTests(TestCase):
+
+    def test_error(self):
+        """
+        Error test
+        """
+        self.assertContains(response, '[THIS TEST SHOULD ERROR]')
+
     def test_negative_votes(self):
         """
         The detail view of a question with no choices will give a relevant message.
@@ -133,5 +151,5 @@ class ResultsViewTests(TestCase):
         q.choice_set.create(choice_text='Negative votes', votes=-50)
         url = reverse('polls:results', args=(q.id,))
         response = self.client.get(url)
-        self.assertContains(response, '(Negative votes. Strange.)')
-
+        self.assertContains(response, '(Negative votes)')
+        self.assertContains(response, '[THIS TEST SHOULD FAIL]')

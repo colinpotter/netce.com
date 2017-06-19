@@ -3,4 +3,4 @@ from django.views import generic
 
 # Create your views here.
 def index(request):
-    return HttpResponse('<a href="polls">Polls</a><br><a href="admin">Admin</a>')
+    return HttpResponse('<a href="polls">Polls</a> - <a href="admin">Admin</a>')
