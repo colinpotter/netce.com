@@ -45,7 +45,6 @@ class QuestionIndexViewTests(TestCase):
         """
         create_question(question_text="Super old question.", days=-100000)
         response = self.client.get(reverse('polls:index'))
-        print('('+response+')')
         self.assertContains(response, "No polls are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
@@ -124,3 +123,15 @@ class QuestionDetailViewTests(TestCase):
         url = reverse('polls:detail', args=(no_choice_question.id,))
         response = self.client.get(url)
         self.assertContains(response, 'No choices provided!')
+
+class ResultsViewTests(TestCase):
+    def test_negative_votes(self):
+        """
+        The detail view of a question with no choices will give a relevant message.
+        """
+        q = create_question(question_text='No Choice Question.', days=0)
+        q.choice_set.create(choice_text='Negative votes', votes=-50)
+        url = reverse('polls:results', args=(q.id,))
+        response = self.client.get(url)
+        self.assertContains(response, '(Negative votes. Strange.)')
+

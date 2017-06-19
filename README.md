@@ -4,7 +4,10 @@
 python3 manage.py migrate
 python3 manage.py createsuperuser
 python3 manage.py runserver
+mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
+python3 manage.py test
 ```
+(we have to disable the 0002_load_historical_data.py file that is used to populate the database )
 
 ## Features added:
 - mark poll questions as expired when they are a year old or older
@@ -16,3 +19,4 @@ python3 manage.py runserver
 - expired questions don't show up in the index
 - proper message is shown when there are no choices for a question
 - message when a choice has negative votes
+    - this test fails because I modified the message to not match expected
