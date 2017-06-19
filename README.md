@@ -28,7 +28,8 @@ break some of the tests that assume an empty database*
 - added a link to the admin page and the polls page in the main index
 
 ## Tests added:
-- test_views.py->QuestionIndexViewTests->test_expired_question()
+----------------|------------------------|------------------------
+- test_views.py | QuestionIndexViewTests | test_expired_question()
     - expired questions don't show up in the index
 - test_views.py->QuestionDetailViewTests->test_expired_question()
     - expired questions return 404 html response code
