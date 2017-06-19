@@ -6,12 +6,6 @@ $ cd netce.com
 $ python3 manage.py migrate
 $ python3 manage.py test
 ```
-or all at once:
-```
-$ git clone https://github.com/colinpotter/netce.com.git && cd netce.com && python3 manage.py migrate && python3 manage.py test
-```
-
-
 *If you would like to set up the server to run, check the admin pages, and
 import a few sample questions and choices, you can do the following:*
 ```
