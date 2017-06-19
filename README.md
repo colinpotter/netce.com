@@ -9,7 +9,7 @@ $ python3 manage.py test
 *If you would like to import a few questions and choices into the database,
 you can do the following:*
 ```
-$ mv polls/migrations/0002_load_historical_data.py polls/migrations/disabled
+$ mv polls/migrations/disabled 0002_load_historical_data.py polls/migrations/
 $ python3 manage.py migrate
 ```
 
