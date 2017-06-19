@@ -28,11 +28,24 @@ break some of the tests that assume an empty database*
 - added a link to the admin page and the polls page in the main index
 
 ## Tests added:
-- expired questions don't show up in the index
-- a radio button is shown when there is a choice in a detail view
-- the proper message is shown when there are no choices for a question
-- the proper message is shown when a choice has negative votes
+- test_views.py:QuestionIndexViewTests:test_expired_question()
+    - expired questions don't show up in the index
+- test_views.py:QuestionDetailViewTests:test_expired_question()
+    - expired questions return 404 html response code
+- test_views.py:QuestionDetailViewTests:test_for_buttons()
+    - a radio button is shown when there is a choice in a detail view
+- test_views.py:QuestionDetailViewTests:test_no_choice_question()
+    - info message is shown when there are no choices for a question
+- test_views.py:test_negative_votes()
+    - the proper message is shown when a choice has negative votes
     - TEST FAILS: because I modified the message to not match what is expected
-- a test that has a NameError from an undefined name
+- test_views.py:test_error()
+    - a test that has a NameError from an undefined name
     - TEST ERRORS: I used an udefined variable on purpose
-- tests that a for post returns a valid 200 code
+
+- test_models.py:test_was_published_recently_with_expired_question()
+    - expired questions are not published recently
+
+- test_forms.py:test_form_response_code()
+    - tests that a form post returns a valid 200 code
+    - this test saves a question to the database then deletes it
