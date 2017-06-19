@@ -147,7 +147,7 @@ class ResultsViewTests(TestCase):
         """
         The detail view of a question with no choices will give a relevant message.
         """
-        q = create_question(question_text='No Choice Question.', days=0)
+        q = create_question(question_text='Negative Votes Question.', days=0)
         q.choice_set.create(choice_text='Negative votes', votes=-50)
         url = reverse('polls:results', args=(q.id,))
         response = self.client.get(url)
